@@ -1,0 +1,193 @@
+
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <title>page liste</title>
+    <!-- l'appel de {$url_base} vous permet de recupérer le chemin de votre site web  -->
+    <link type="text/css" rel="stylesheet" href="{$url_base}public/css/bootstrap-cerulean.min.css"/>
+    <link type="text/css" rel="stylesheet" href="{$url_base}public/css/samane.css"/>
+    <style>
+        h1{
+            color: #40007d;
+        }
+    </style>
+</head>
+<style>
+    .tabul{
+        text-indent:700px;
+    }
+    .footer {
+        margin-top: 20px;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height:60px;
+        background-color:#011d37;
+        color: white;
+        text-align:center;
+
+    }
+    a{
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 18px;
+       ;
+
+    }
+</style>
+<script language="JavaScript">
+    function verif(){
+        return confirm("Voulez vous reelement supprimer ce Client?");
+
+    }
+</script>
+<body>
+
+<div class="nav navbar-inverse">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <!-- l'appel de {$url_base} vous permet de recupérer le chemin de votre site web  -->
+            <li><a href="{$url_base}accueil/accueil"><img src="{$url_base}public/image/logo.png" width="50" height="40"></a></li>
+            <li><a href="{$url_base}Test/index">Clients</a></li>
+            <li><a href="{$url_base}Test/getID/1">Abonnements</a></li>
+            <li><a href="{$url_base}Test/liste">Facturation</a></li>
+            <li><a href="{$url_base}Test/liste">Reglement de Factures</a></li>
+            <li class="tabul"><a href="#">Deconnexion <img src="{$url_base}public/image/logout.jpg" width="40" height="40"></a></li>
+
+        </ul>
+    </div>
+</div>
+<div class="col-md-8 col-xs-12 col-md-offset-2" style="margin-top:50px;">
+    <div class="panel panel-info">
+        <div class="panel-heading">Formulaire D'ajout Des Nouveaux Clients</div>
+        <div class="panel-body">
+            {if isset($ok)}
+            {if $ok != 0}
+            <div class="panel-body" style="color: green; background-color: #afd9ee">
+            Client ajouté avec succes!
+            </div>
+            {else}
+            Erreur d'insertion!
+            {/if}
+            {/if}
+            <form method="post" action="{$url_base}Client/add">
+                <div class="form-group col-md-6">
+                    <label class="control-label">Nom Du Client</label>
+                    <input class="form-control" type="text" name="nc" id="nc"/>
+
+                    <label class="control-label">Prenom Client</label>
+                    <input class="form-control" type="text" name="pc" id="pc"/>
+                </div>
+                <div class="form-group col-md-6 ">
+                    <label class="control-label">Telephone</label>
+                    <input class="form-control" type="text" name="tel" id="tel"/>
+                    <label class="control-label">Village</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="idvillage">
+
+                        {foreach from=$village item=v}
+                        <option value=".{$v['id_village']}.">{$v['nom_village']}</option>
+
+                        {/foreach}
+
+
+                    </select>
+                </div>
+                <div class="form-group col-md-12">
+                    <label class="control-label">Adresse</label>
+                    <input class="form-control" type="text" name="adresse" id="adresse"/>
+
+                </div>
+                <div class="form-group col-md-12">
+                    <input class="btn btn-success" type="submit" name="valider" value="Valider"/>
+                    <input class="btn btn-danger" type="reset" name="annuler" value="Annuler"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="col-md-8 col-xs-12 col-md-offset-2" style="margin-top:50px; ">
+    <div class="panel panel-info">
+        <div class="panel-heading">Gestion Des Clients</div>
+        {if isset($okk)}
+        {if $okk != 0}
+        <div class="panel-body" style="color: green; background-color:#afd9ee">
+            Client Modifié avec succes!
+        </div>
+        {else}
+        <div class="panel-body" style="color: green; background-color:#afd9ee; ">
+            Aucun changement
+        </div>
+        {/if}
+        {/if}
+        {if isset($okkk)}
+        {if $okkk != 0}
+        <div class="panel-body" style="color: green; background-color:#afd9ee">
+            Client Supperimé avec succes!
+        </div>
+        {else}
+        <div class="panel-body" style="color: green; background-color:#afd9ee; ">
+            Aucune suppression Effectuée
+        </div>
+        {/if}
+        {/if}
+        <div class="panel-body">
+            {if isset($tests)}
+            {if $tests != null}
+            <table class="table table-bordered table-stripped" style="background-color: #a6e1ec; font-family: sans-serif; font-size: 14px ">
+                <tr>
+
+                    <th>id</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Adresse</th>
+                    <th>Telephone</th>
+                    <th>Village</th>
+                    <th>Nom et Prenom chef du village</th>
+                    <th>Editer</th>
+                    <th>Supprimer</th>
+
+
+                </tr>
+                {foreach from=$tests item=test}
+                <tr>
+                    <td>{$test['id']}</td>
+                    <td>{$test['nom_client']}</td>
+                    <td>{$test['prenom_client']}</td>
+                    <td>{$test['adresse']}</td>
+                    <td>{$test['num_telephone']}</td>
+                    <td>{$test['nom_village']}</td>
+                    <td>{$test['np']}</td>
+                    <td><a href="{$url_base}Client/edit&id={$test['id']}"><img src="{$url_base}public/icon/modifier.png"></a> </td>
+                    <td><a href="{$url_base}Client/delete&id={$test['id']}"onclick='verif()'><img src="{$url_base}public/icon/supprimer.png"></a> </td>
+                </tr>
+                {/foreach}
+
+            {else}
+            Liste vide
+            {/if}
+            {/if}
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+<img src="{$url_base}public/image/eaupotable.png" width="100%" height="0px;"/>
+<!--<div class="col-md-8 col-xs-12 col-md-offset-2" style="margin-top:150px;">
+    <div class="panel panel-info">
+        <div class="panel-heading">BIENVENUE A VOTRE MODELE MVC</div>
+        <div class="panel-body">
+            <div id="design_js">MODELE DEVELOPPE PAR Ngor SECK ! <h1>Version 1.0.1</h1></div>
+        </div>
+    </div>
+</div>-->
+<div class="footer">
+    <br/>
+    <p>@2018 copyright all rights reserved Sen Forage</p>
+    <br/>
+</div>
+
+
+</body>
+</html>

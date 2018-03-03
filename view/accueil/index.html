@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Authentification</title>
+    <link rel="stylesheet" href="{$url_base}public/css/sty.css">
+</head>
+<body>
+<div class="container">
+    <div class="profile">
+        <button class="profile__avatar" id="toggleProfile">
+            <img src="{$url_base}public/image/log.jpg" alt="Avatar" />
+        </button>
+        <div class="profile__form">
+            <form action="{$url_base}Connexion/conn" method="POST">
+                <div class="profile__fields">
+                    <div class="field">
+                        <input type="text" id="fieldUser" class="input" name="mail" required pattern=.*\S.* />
+                        <label for="fieldUser" class="label">Nom d'Utilisateur</label>
+                    </div>
+                    <div class="field">
+                        <input type="password" id="fieldPassword" class="input" name="mdp" required pattern=.*\S.* />
+                        <label for="fieldPassword" class="label">Mot de passe</label>
+                    </div>
+
+                    <div class="profile_footer">
+                        <button type="submit" class="button raised blue" name="conn">Se connecter</button>
+                    </div>
+                    <!-- <div class="profile__footer">
+                      <div class="button raised blue">
+                       <button type="submit" class="center" value="login" fit>LOGIN</button>
+                       <paper-ripple fit></paper-ripple>
+                     </div>
+                   </div> -->
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<script src="{$url_base}public/js/index.js"></script>
+</body>
+</html>

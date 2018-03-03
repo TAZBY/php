@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>page d'accueil</title>
+		<!-- l'appel de {$url_base} vous permet de recupérer le chemin de votre site web  -->
+		<link type="text/css" rel="stylesheet" href="{$url_base}public/css/bootstrap-cerulean.min.css"/>
+		<link type="text/css" rel="stylesheet" href="{$url_base}public/css/samane.css"/>
+		<!-- integration de javascript dans le moteur de rendu de vue Smarty -->
+		{literal}
+			<script language=javascript>
+			 function load_design() {
+			   document.getElementById("design_js").style.color = "#40007d";
+			 }
+
+			</script>
+		{/literal}
+	</head>
+    <style>
+        .tabul{
+            text-indent:700px;
+        }
+        .footer {
+            margin-top: auto;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height:60px;
+            background-color:#011d37;
+            color: white;
+            text-align:center;
+
+        }
+        a{
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 18px;
+
+
+        }
+    </style>
+	<body onload="load_design()">
+		<div class="nav navbar-inverse">
+            <div class="container-fluid">
+			<ul class="nav navbar-nav">
+				<!-- l'appel de {$url_base} vous permet de recupérer le chemin de votre site web  -->
+                <li><a href="{$url_base}accueil/accueil"><img src="{$url_base}public/image/logo.png" width="50" height="40"></a></li>
+				<li><a href="{$url_base}client/liste">Clients</a></li>
+				<li><a href="{$url_base}Test/getID/1">Abonnements</a></li>
+				<li><a href="{$url_base}Test/liste">Facturation</a></li>
+                <li><a href="{$url_base}Test/liste">Reglement de Factures</a></li>
+                <li class="tabul"><a href="#">Deconnexion <img src="{$url_base}public/image/logout.jpg" width="40" height="40"></a></li>
+
+            </ul>
+                </div>
+		</div>
+        <img src="{$url_base}public/image/eaupotable.png" width="100%"/>
+		<!--<div class="col-md-8 col-xs-12 col-md-offset-2" style="margin-top:150px;">
+			<div class="panel panel-info">
+				<div class="panel-heading">BIENVENUE A VOTRE MODELE MVC</div>
+				<div class="panel-body">
+					<div id="design_js">MODELE DEVELOPPE PAR Ngor SECK ! <h1>Version 1.0.1</h1></div>
+				</div>
+			</div>
+		</div>-->
+        <div class="footer">
+            <br/>
+            <p>@2018 copyright all rights reserved Sen Forage</p>
+            <br/>
+            </div>
+	</body>
+</html>

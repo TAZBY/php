@@ -1,0 +1,118 @@
+
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <title>page liste</title>
+    <!-- l'appel de {$url_base} vous permet de recupérer le chemin de votre site web  -->
+    <link type="text/css" rel="stylesheet" href="{$url_base}public/css/bootstrap-cerulean.min.css"/>
+    <link type="text/css" rel="stylesheet" href="{$url_base}public/css/samane.css"/>
+    <style>
+        h1{
+            color: #40007d;
+        }
+    </style>
+</head>
+<style>
+    .tabul{
+        text-indent:700px;
+    }
+    .footer {
+        margin-top: 100px;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height:60px;
+        background-color:#011d37;
+        color: white;
+        text-align:center;
+
+    }
+    a{
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 18px;
+    ;
+
+    }
+</style>
+<body>
+
+<div class="nav navbar-inverse">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <!-- l'appel de {$url_base} vous permet de recupérer le chemin de votre site web  -->
+            <li><a href="{$url_base}accueil/accueil"><img src="{$url_base}public/image/logo.png" width="50" height="40"></a></li>
+            <li><a href="{$url_base}Test/index">Clients</a></li>
+            <li><a href="{$url_base}Test/getID/1">Abonnements</a></li>
+            <li><a href="{$url_base}Test/liste">Facturation</a></li>
+            <li><a href="{$url_base}Test/liste">Reglement de Factures</a></li>
+            <li class="tabul"><a href="#">Deconnexion <img src="{$url_base}public/image/logout.jpg" width="40" height="40"></a></li>
+
+        </ul>
+    </div>
+</div>
+<div class="col-md-8 col-xs-12 col-md-offset-2" style="margin-top:50px;">
+    <div class="panel panel-info">
+        <div class="panel-heading">Formulaire D'ajout Des Nouveaux Clients</div>
+        <div class="panel-body">
+
+            <form method="post" action="{$url_base}Client/update">
+                {foreach from=$modif item=$test}
+                <div class="form-group ">
+                    <label class="control-label">Nom Du Client</label>
+                    <input class="form-control" type="HIDDEN" name="id" id="id" value="{$test['id']}"/>
+                    <input class="form-control" type="text" name="nc" id="nc" value="{$test['nom_client']}"/>
+</div>
+                <div class="form-group ">
+                    <label class="control-label">Prenom Client</label>
+                    <input class="form-control" type="text" name="pc" id="pc" value="{$test['prenom_client']}"/>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label">Telephone</label>
+                    <input class="form-control" type="text" name="tel" id="tel" value="{$test['num_telephone']}"/>
+                    </div>
+                <div class="form-group ">
+                    <label class="control-label">Village</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="idvillage">
+
+                        {foreach from=$village item=v}
+                        <option value=".{$v['id_village']}.">{$v['nom_village']}</option>
+
+                        {/foreach}
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Adresse</label>
+                    <input class="form-control" type="text" name="adresse" id="adresse" value="{$test['adresse']}"/>
+
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-success" type="submit" name="modifier" value="Valider"/>
+                    <input class="btn btn-danger" type="reset" name="annuler" value="Annuler"/>
+                </div>
+                {/foreach}
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<img src="{$url_base}public/image/eaupotable.png" width="100%" height="0px;"/>
+<!--<div class="col-md-8 col-xs-12 col-md-offset-2" style="margin-top:150px;">
+    <div class="panel panel-info">
+        <div class="panel-heading">BIENVENUE A VOTRE MODELE MVC</div>
+        <div class="panel-body">
+            <div id="design_js">MODELE DEVELOPPE PAR Ngor SECK ! <h1>Version 1.0.1</h1></div>
+        </div>
+    </div>
+</div>-->
+<div class="footer">
+    <br/>
+    <p>@2018 copyright all rights reserved Sen Forage</p>
+    <br/>
+</div>
+
+
+</body>
+</html>
